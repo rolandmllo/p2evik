@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "user_role")
+@Entity(name = "roless")
 public class Role {
 
     @Id
     @NotNull
     @Column(name = "role_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
@@ -24,11 +24,10 @@ public class Role {
     @Column(nullable = false)
     private String name;
 
-    @NotNull
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-    public Role(String name) {
+    public Role(String name, User user) {
         this.name = name;
     }
 }

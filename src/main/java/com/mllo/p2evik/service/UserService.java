@@ -56,6 +56,14 @@ public interface UserService {
     User findUser(long id);
 
     /**
+     * Finds the user with the given email.
+     *
+     * @param email the email of the user to be found
+     * @return the User object with the given email, or null if not found
+     */
+    User findUserByEmail(String email);
+
+    /**
      * Finds the user with the given name.
      *
      * @param name the name of the user to be found
