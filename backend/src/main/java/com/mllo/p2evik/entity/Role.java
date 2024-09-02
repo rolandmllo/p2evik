@@ -1,14 +1,17 @@
 package com.mllo.p2evik.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Entity(name = "roless")
 public class Role {
@@ -24,12 +27,15 @@ public class Role {
     @Column(nullable = false)
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
+    @ToString.Exclude
     private Set<User> users;
 
     public Role(String name, User user) {
         this.name = name;
     }
+
 }
 
 

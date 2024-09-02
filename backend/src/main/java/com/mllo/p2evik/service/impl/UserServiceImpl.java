@@ -3,10 +3,14 @@ package com.mllo.p2evik.service.impl;
 import com.mllo.p2evik.entity.User;
 import com.mllo.p2evik.repository.UserRepository;
 import com.mllo.p2evik.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
