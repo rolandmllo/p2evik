@@ -105,7 +105,7 @@ class UserServiceTest {
     @Test
     void findUserByEmail_returnsUserByEmail() {
         User user = new User("John Doe");
-        when(userRepository.findByEmail("john.doe@example.com")).thenReturn(user);
+        when(userRepository.findByEmail("john.doe@example.com")).thenReturn(Optional.of(user));
 
         User result = userService.findUserByEmail("john.doe@example.com");
 
@@ -115,7 +115,7 @@ class UserServiceTest {
 
     @Test
     void findUserByEmail_returnsNullWhenUserNotFoundByEmail() {
-        when(userRepository.findByEmail("john.doe@example.com")).thenReturn(null);
+        when(userRepository.findByEmail("john.doe@example.com")).thenReturn(Optional.empty());
 
         User result = userService.findUserByEmail("john.doe@example.com");
 
@@ -143,4 +143,6 @@ class UserServiceTest {
         assertNull(result);
         verify(userRepository, times(1)).findByName("John Doe");
     }
+
+
 }

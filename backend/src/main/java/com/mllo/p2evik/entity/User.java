@@ -1,20 +1,34 @@
 package com.mllo.p2evik.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Set;
 
-@NoArgsConstructor
+import java.util.*;
+
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity(name = "users")
 public class User {
+
+    @NotNull
+    @Size(min = 7, max = 100)
+    @Column(unique = true, length = 100)
+    String email;
+
+    @NotNull
+    @JsonIgnore
+    @Size(min = 7, max = 30)
+    String password;
 
     private @Id
     @NotNull
@@ -27,27 +41,33 @@ public class User {
     private String name;
 
     @NotNull
-    @Size(min = 7, max = 20)
-    @Column(unique = true, length = 60)
-    String email;
-
-    @NotNull
-    @Size(min = 7, max = 30)
-    String password;
-
-
-    @NotNull
     @Size(min = 1, max = 30)
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "users_roles", joinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
+            @JoinColumn(name = "user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {
-            @JoinColumn(name = "role_id", referencedColumnName = "role_id") })
+                    @JoinColumn(name = "role_id", referencedColumnName = "role_id")})
     private Set<Role> roles;
+
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public User(String name) {
         this.name = name;
-        this.roles = Set.of(new Role("USER", this));
+        this.roles = Set.of(new Role("USER"));
+    }
+
+    public String getUsername() {
+        return email;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 }

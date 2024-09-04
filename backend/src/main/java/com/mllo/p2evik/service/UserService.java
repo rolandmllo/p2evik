@@ -1,13 +1,14 @@
 package com.mllo.p2evik.service;
 
 import com.mllo.p2evik.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
 /**
  * Service interface for managing users.
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     /**
      * Saves a new user.
@@ -20,7 +21,7 @@ public interface UserService {
     /**
      * Updates the user with the given ID.
      *
-     * @param id the ID of the user to be updated
+     * @param id   the ID of the user to be updated
      * @param user the new user data
      * @return the updated User object
      */
@@ -70,4 +71,28 @@ public interface UserService {
      * @return the User object with the given name, or null if not found
      */
     User findUser(String name);
+
+    /**
+     * Checks if a user with the given username exists.
+     *
+     * @param username the username to check
+     * @return true if a user with the given username exists, false otherwise
+     */
+    boolean existsByUsername(String username);
+
+    /**
+     * Checks if a user with the given email exists.
+     *
+     * @param email the email to check
+     * @return true if a user with the given email exists, false otherwise
+     */
+    boolean existsByEmail(String email);
+
+    /**
+     * Saves a user.
+     *
+     * @param user the user to be saved
+     */
+    void save(User user);
+
 }

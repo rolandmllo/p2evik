@@ -10,9 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 @Entity(name = "roless")
 public class Role {
 
@@ -32,10 +30,14 @@ public class Role {
     @ToString.Exclude
     private Set<User> users;
 
-    public Role(String name, User user) {
+    public Role(String name) {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
 
 
