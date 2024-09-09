@@ -3,8 +3,6 @@ package com.mllo.p2evik.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * Data Transfer Object for user sign-in responses.
  *
@@ -17,7 +15,4 @@ public class SignInResponseDto implements BaseDto {
     private String username;
     private String email;
     private String token;
-    private Long id;
-    private String type;
-    private List<String> roles;
 }

@@ -1,8 +1,7 @@
 package com.mllo.p2evik.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 /**
  * Data Transfer Object for user sign-in requests.
@@ -11,8 +10,11 @@ import lombok.Data;
  * It includes fields for email and password. Validation constraints are applied
  * to ensure the data is in the correct format.</p>
  */
-@Data
+
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class SignInRequestDto implements BaseDto {
     @NotBlank(message = "Email is required!")
     private String email;

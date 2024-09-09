@@ -7,6 +7,7 @@ import com.mllo.p2evik.dto.SignUpRequestDto;
 import com.mllo.p2evik.exception.RoleNotFoundException;
 import com.mllo.p2evik.exception.UserAlreadyExistsException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 
 /**
  * Service interface for authentication-related operations.
@@ -34,5 +35,21 @@ public interface AuthService {
      * @return a ResponseEntity containing an ApiResponseDto with the result of the sign-in operation
      */
     ResponseEntity<ApiResponseDto<BaseDto>> signInUser(SignInRequestDto signInRequestDto);
+
+    /**
+     * Generates a JWT token for the given authentication.
+     *
+     * @param authentication the authentication object for which to generate a token
+     * @return the generated JWT token
+     */
+    String generateToken(Authentication authentication);
+
+    /**
+     * Authenticates a user based on the given sign-in request.
+     *
+     * @param signInRequestDto the data transfer object containing the sign-in request details
+     * @return the authentication object for the user
+     */
+    Authentication authenticate(SignInRequestDto signInRequestDto);
 
 }

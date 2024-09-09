@@ -2,12 +2,9 @@ package com.mllo.p2evik.service.impl;
 
 import com.mllo.p2evik.entity.User;
 import com.mllo.p2evik.repository.UserRepository;
-import com.mllo.p2evik.security.UserDetailsImpl;
 import com.mllo.p2evik.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -74,12 +71,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-
-        return UserDetailsImpl.build(user);
-    }
 }

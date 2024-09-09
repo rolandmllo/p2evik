@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.util.*;
@@ -18,7 +20,7 @@ import java.util.*;
 @AllArgsConstructor
 @Builder
 @Entity(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @NotNull
     @Size(min = 7, max = 100)
@@ -61,6 +63,11 @@ public class User {
     public User(String name) {
         this.name = name;
         this.roles = Set.of(new Role("USER"));
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
     }
 
     public String getUsername() {

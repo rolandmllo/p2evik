@@ -7,9 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
-
 /**
  * Data Transfer Object for user sign-up requests.
  *
@@ -34,7 +31,5 @@ public class SignUpRequestDto implements BaseDto {
     @Size(min = 8, message = "Password must have least 8 characters!")
     @Size(max = 20, message = "Password can have have almost 20 characters!")
     private String password;
-
-    private Set<String> roles;
 
 }

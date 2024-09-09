@@ -1,14 +1,13 @@
 package com.mllo.p2evik.service;
 
 import com.mllo.p2evik.entity.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
 /**
  * Service interface for managing users.
  */
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
     /**
      * Saves a new user.
