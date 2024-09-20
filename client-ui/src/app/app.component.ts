@@ -9,6 +9,6 @@ import {HeaderComponent} from "./header/header.component";
   imports: [HeaderComponent,
       RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {}
