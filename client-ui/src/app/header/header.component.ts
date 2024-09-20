@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {SecurityStore} from "../shared/security";
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
     selector: 'app-header',
@@ -12,14 +12,19 @@ import {tap} from "rxjs";
     imports: [RouterLink, AsyncPipe],
 })
 export class HeaderComponent {
-    securityStore = inject(SecurityStore);
-    user = this.securityStore.user;
+    authenticationService: AuthenticationService
 
-    constructor(private http: HttpClient) {
-        console.log(this.securityStore.loadedUser());
-        this.http.get('http://localhost:8081/api/users').pipe(
+    constructor(private http: HttpClient, authenticationService: AuthenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
+    fetchUsers() {
+        console.log(this.authenticationService.userName)
+
+        const a =      this.http.get('http://localhost:8081/users').pipe(
             tap(data => console.log(data))
         ).subscribe();
+        console.log(a)
     }
 }
 

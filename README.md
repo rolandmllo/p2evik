@@ -4,7 +4,7 @@
 p2evik is a work-in-progress application featuring a Spring Boot RESTful API resource server, an Angular client, and OAuth2.0 authentication using Keycloak.
 ### API Documentation
 The API documentation is available via Swagger.
-`/api-docs/index.html`
+`swagger-ui/index.html`
 
 ### Docker Compose
 The project includes a docker-compose setup to run the backend, MariaDB, PostgreSQL for Keycloak, and Keycloak itself.

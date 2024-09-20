@@ -32,8 +32,7 @@ public class KeycloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt)
     {
         var resourceAccess = new HashMap<>(jwt.getClaim("resource_access"));
-        var p2evik = (Map<String, List<String>>) resourceAccess.get("p2evik-realm");
-
+        var p2evik = (Map<String, List<String>>) resourceAccess.get("account");
         var resourceRoles = (ArrayList<String>) p2evik.get("roles");
 
         return resourceRoles.stream()
