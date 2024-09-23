@@ -1,0 +1,9 @@
+<mat-grid-list cols="3" rowHeight="150px" gutterSize="20px" class="choose-group-container">
+    <mat-grid-tile *ngFor="let group of loadedGroups">
+            <mat-card>
+                <mat-card-content>
+                    {{ group }}
+                </mat-card-content>
+            </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

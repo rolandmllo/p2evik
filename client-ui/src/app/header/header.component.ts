@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
-import {AuthenticationService} from "../services/authentication.service";
+import {AuthenticationService} from "../shared/services/authentication.service";
 
 @Component({
     selector: 'app-header',

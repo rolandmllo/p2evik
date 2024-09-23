@@ -1,6 +1,18 @@
 services:
+    client-ui:
+        container_name: client-ui
+        build:
+            context: ./client-ui
+            dockerfile: Dockerfile
+        ports:
+            - "4200:80"
+        depends_on:
+            -   backend
+            -  keycloak
+
     backend:
         image: backend
+        container_name: backend
         build:
             context: ./backend
             dockerfile: Dockerfile
