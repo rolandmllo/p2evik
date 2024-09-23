@@ -33,4 +33,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return true if a user with the given email exists, false otherwise
      */
     Boolean existsByEmail(String email);
+
+    /**
+     * Finds a user by their keycloak ID.
+     *
+     * @param keycloakId the keycloak ID of the user to find
+     * @return the User object with the given keycloak ID
+     */
+    Optional<User> findByKeycloakId(String keycloakId);
+
 }

@@ -1,17 +1,20 @@
 package com.mllo.p2evik.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mllo.p2evik.entity.types.UserRoleType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Set;
 
+/**
+ * Entity representing a role.
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity(name = "roless")
+@Entity(name = "roles")
 public class Role {
 
     @Id
@@ -20,23 +23,20 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private UserRoleType roleType;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    @ToString.Exclude
     private Set<User> users;
 
-    public Role(String name) {
-        this.name = name;
+    public Role(UserRoleType name) {
+        this.roleType = name;
     }
 
     @Override
     public String toString() {
-        return this.name;
+        return this.roleType.name();
     }
 }
 

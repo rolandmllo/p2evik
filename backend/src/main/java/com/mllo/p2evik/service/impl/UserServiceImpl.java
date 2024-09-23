@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -69,6 +70,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    /**
+     * Synchronizes the user details with the given keycloak ID.
+     *
+     * @param keycloakId the keycloak ID of the user
+     * @param email the email of the user
+     * @param name the name of the user
+     */
+    public void syncUser(String keycloakId, String email, String name) {
+        Optional<User> existingUser = userRepository.findByKeycloakId(keycloakId);
+
+        if (existingUser.isEmpty()) {
+            User newUser = new User();
+            newUser.setKeycloakId(keycloakId);
+            newUser.setEmail(email);
+            newUser.setName(name);
+            save(newUser);
+        } else {
+            User user = existingUser.get();
+            if (!user.getEmail().equals(email) || !user.getName().equals(name)) {
+                user.setEmail(email);
+                user.setName(name);
+                save(user);
+            }
+        }
     }
 
 }

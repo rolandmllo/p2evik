@@ -10,8 +10,4 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleService {
     RoleRepository roleRepository;
-
-    public Role getInstance(String role) throws RoleNotFoundException {
-        return roleRepository.findByName(role).orElseThrow(() -> new RoleNotFoundException("Role not found"));
-        }
 }

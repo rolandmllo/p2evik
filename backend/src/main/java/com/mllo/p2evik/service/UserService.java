@@ -3,6 +3,7 @@ package com.mllo.p2evik.service;
 import com.mllo.p2evik.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service interface for managing users.
@@ -94,4 +95,12 @@ public interface UserService {
      */
     void save(User user);
 
+    /**
+     * Synchronizes the user details with the given keycloak ID.
+     *
+     * @param keycloakId the keycloak ID of the user
+     * @param email      the email of the user
+     * @param name       the name of the user
+     */
+    void syncUser(String keycloakId, String email, String name);
 }
