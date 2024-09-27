@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Accessors(chain = true)
 @Entity(name = "study_groups")
 public class StudyGroup {
     @Id

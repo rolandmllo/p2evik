@@ -11,5 +11,5 @@ package com.mllo.p2evik.dto;
  * <p>Implementing this interface allows for type safety and can be used to
  * identify DTOs within the application.</p>
  */
-public interface BaseDto {
+public interface IDto {
 }

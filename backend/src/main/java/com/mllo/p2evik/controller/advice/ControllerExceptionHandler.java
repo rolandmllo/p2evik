@@ -1,7 +1,7 @@
 package com.mllo.p2evik.controller.advice;
 
 import com.mllo.p2evik.dto.ApiResponseDto;
-import com.mllo.p2evik.dto.BaseDto;
+import com.mllo.p2evik.dto.IDto;
 import com.mllo.p2evik.dto.ErrorMessagesDto;
 import com.mllo.p2evik.exception.RoleNotFoundException;
 import com.mllo.p2evik.exception.UserAlreadyExistsException;
@@ -27,7 +27,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponseDto<BaseDto>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ApiResponseDto<IDto>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exception) {
 
         var errorMessage = new ErrorMessagesDto();
 
@@ -45,7 +45,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = UserAlreadyExistsException.class)
-    public ResponseEntity<ApiResponseDto<BaseDto>> userAlreadyExistsExceptionHandler(UserAlreadyExistsException exception) {
+    public ResponseEntity<ApiResponseDto<IDto>> userAlreadyExistsExceptionHandler(UserAlreadyExistsException exception) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(
@@ -57,7 +57,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = RoleNotFoundException.class)
-    public ResponseEntity<ApiResponseDto<BaseDto>> roleNotFoundExceptionHandler(RoleNotFoundException exception) {
+    public ResponseEntity<ApiResponseDto<IDto>> roleNotFoundExceptionHandler(RoleNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(

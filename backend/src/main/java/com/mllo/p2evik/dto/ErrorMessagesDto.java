@@ -9,7 +9,7 @@ import java.util.List;
  * DTO for error messages.
  */
 @Data
-public class ErrorMessagesDto implements BaseDto {
+public class ErrorMessagesDto implements IDto {
 
     private List<String> messages;
 

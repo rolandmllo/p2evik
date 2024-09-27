@@ -16,7 +16,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -26,11 +26,15 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
         Jwt jwt = (Jwt) authentication.getPrincipal();
 
+        syncUserDetails(jwt);
+        super.onAuthenticationSuccess(request, response, authentication);
+    }
+
+    private void syncUserDetails(Jwt jwt) {
         String keycloakId = jwt.getSubject();
         String email = jwt.getClaim("email");
         String name = jwt.getClaim("name");
 
         userService.syncUser(keycloakId, email, name);
-        super.onAuthenticationSuccess(request, response, authentication);
     }
 }

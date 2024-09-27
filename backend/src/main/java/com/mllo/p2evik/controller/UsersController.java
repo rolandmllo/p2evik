@@ -23,7 +23,6 @@ import java.util.List;
 public class UsersController {
     private final UserRepository repository;
 
-
     @Tag(name = "GetAll", description = "Get all users")
     @Operation(summary = "Get all users", description = "Get all users as a list")
     @ApiResponse(responseCode = "200", content = {@Content(mediaType = "application/json",
@@ -35,7 +34,6 @@ public class UsersController {
         log.info("Getting all users");
         return repository.findAll();
     }
-
 
     @Tag(name = "GetUser", description = "Get user by id")
     @Parameter(name = "id", description = "User id", required = true)

@@ -3,7 +3,6 @@ package com.mllo.p2evik.service;
 import com.mllo.p2evik.entity.User;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Service interface for managing users.
