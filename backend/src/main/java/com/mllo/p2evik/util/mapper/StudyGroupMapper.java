@@ -4,6 +4,9 @@ import com.mllo.p2evik.dto.StudyGroupDto;
 import com.mllo.p2evik.entity.StudyGroup;
 import org.springframework.stereotype.Component;
 
+/**
+ * Mapper for StudyGroup entities.
+ */
 @Component
 public class StudyGroupMapper extends AbstractMapper<StudyGroup, StudyGroupDto> {
     @Override
