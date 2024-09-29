@@ -13,11 +13,11 @@ import {NgForOf} from "@angular/common";
     MatCardContent,
     NgForOf
   ],
-  templateUrl: './choose-group.component.html',
-  styleUrl: './choose-group.component.scss'
+  templateUrl: './study-group.component.html',
+  styleUrl: './study-group.component.scss'
 })
-export class ChooseGroupComponent {
-    constructor() {}
+export class StudyGroupComponent {
+
   loadedGroups = ["7.C","8.A","8.B","8.C","9.A","9.B",
     "9.C","10.A","10.B","10.C","11.A","11.B"];
 }

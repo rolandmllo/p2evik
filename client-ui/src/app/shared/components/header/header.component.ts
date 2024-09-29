@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
-import {AuthenticationService} from "../shared/services/authentication.service";
+import {AuthenticationService} from "../../../core/services/authentication.service";
+import {MatToolbar} from "@angular/material/toolbar";
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     standalone: true,
-    imports: [RouterLink, AsyncPipe],
+    imports: [RouterLink, AsyncPipe, MatToolbar],
 })
 export class HeaderComponent {
     authenticationService: AuthenticationService

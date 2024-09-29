@@ -8,11 +8,13 @@ export class AuthenticationService {
 
   constructor(private readonly keycloakService: KeycloakService) {
     if (this.isLoggedIn()) {
-      this.keycloakService.loadUserProfile();
+      this.keycloakService.loadUserProfile()
+          .catch(error =>
+              console.error('Failed to load user profile', error));
     }
   }
 
-  get userName(): String {
+  get userName(): string {
     return this.keycloakService.getUsername();
   }
 
@@ -26,7 +28,8 @@ export class AuthenticationService {
     return this.keycloakService.isLoggedIn();
   }
   logout(): void {
-    this.keycloakService.logout();
+    this.keycloakService.logout().catch(error =>
+        console.error('Failed to log out', error));
   }
 
   redirectToLoginPage(): Promise<void> {

@@ -2,16 +2,15 @@ import {CanMatchFn, Router, UrlTree} from "@angular/router";
 import {inject} from "@angular/core";
 import { KeycloakService} from "keycloak-angular";
 
-export const authGuard: CanMatchFn = async (route, segments): Promise<boolean | UrlTree> => {
+export const AuthGuard: CanMatchFn = async (route): Promise<boolean | UrlTree> => {
     const router = inject(Router);
     const keycloakService = inject(KeycloakService);
 
     const authenticated: boolean = keycloakService.isLoggedIn();
 
     if (!authenticated) {
-        await keycloakService.login({
-            redirectUri: window.location.origin,
-        });
+        const redirectUrl = router.url;
+        return router.createUrlTree(['/login'], { queryParams: { redirectUrl }});
     }
 
     const roles: string[] = keycloakService.getUserRoles(true);
@@ -27,5 +26,5 @@ export const authGuard: CanMatchFn = async (route, segments): Promise<boolean | 
         return true;
     }
 
-    return router.createUrlTree(['/access']);
+    return router.createUrlTree(['/access-denied']);
 };

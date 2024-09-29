@@ -1,13 +1,18 @@
+<mat-toolbar class="sticky-header">
+
+
 <a class="home" routerLink="/">
     <h1>
         P2evik
     </h1>
 </a>
-<div class="security">
+    <span class="spacer"></span>
+
+    <div class="loginButtons">
     @if (!authenticationService.isLoggedIn()) {
         <button
                 data-testid="btn-sign-in"
-                (click)="authenticationService.login()"
+                routerLink="/login"
         >
             Sign In
         </button>
@@ -29,3 +34,4 @@
             (click)="fetchUsers()"
     >fetch</button>
 </div>
+</mat-toolbar>

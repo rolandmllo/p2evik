@@ -9,6 +9,7 @@ import {
 } from "@angular/common/http";
 import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakOptions, KeycloakService} from "keycloak-angular";
 import {environment} from "../environments";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export function initializer(keycloak: KeycloakService): () => Promise<boolean> {
     const options: KeycloakOptions = {
@@ -43,6 +44,6 @@ export const appConfig: ApplicationConfig = {
         },
         KeycloakService,
         KeycloakAngularModule,
-        provideHttpClient(withInterceptorsFromDi(), withFetch()),
+        provideHttpClient(withInterceptorsFromDi(), withFetch()), provideAnimationsAsync(),
     ],
 };
