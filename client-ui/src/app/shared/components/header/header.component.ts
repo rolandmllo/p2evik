@@ -1,31 +1,22 @@
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe, NgIf} from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
-import {tap} from "rxjs";
 import {AuthenticationService} from "../../../core/services/authentication.service";
 import {MatToolbar} from "@angular/material/toolbar";
+import {MatButton, MatFabButton} from "@angular/material/button";
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
     standalone: true,
-    imports: [RouterLink, AsyncPipe, MatToolbar],
+    imports: [RouterLink, AsyncPipe, MatToolbar, MatFabButton, MatButton, NgIf],
 })
 export class HeaderComponent {
     authenticationService: AuthenticationService
 
-    constructor(private http: HttpClient, authenticationService: AuthenticationService) {
+    constructor(authenticationService: AuthenticationService) {
         this.authenticationService = authenticationService;
-    }
-
-    fetchUsers() {
-        console.log(this.authenticationService.userName)
-
-        const a =      this.http.get('http://localhost:8081/users').pipe(
-            tap(data => console.log(data))
-        ).subscribe();
-        console.log(a)
     }
 }
 

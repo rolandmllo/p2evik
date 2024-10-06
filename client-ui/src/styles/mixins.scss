@@ -1,0 +1,24 @@
+/* Mixin for responsive font sizes */
+@mixin responsive-font($small, $medium, $large) {
+  font-size: $small;
+
+  @media (min-width: 600px) {
+    font-size: $medium;
+  }
+
+  @media (min-width: 960px) {
+    font-size: $large;
+  }
+}
+
+/* Mixin for flexbox centering */
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mixin for box shadow */
+@mixin box-shadow($x, $y, $blur, $color) {
+  box-shadow: $x $y $blur $color;
+}

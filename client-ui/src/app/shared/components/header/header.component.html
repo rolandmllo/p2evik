@@ -1,37 +1,22 @@
-<mat-toolbar class="sticky-header">
-
-
-<a class="home" routerLink="/">
-    <h1>
-        P2evik
-    </h1>
-</a>
-    <span class="spacer"></span>
+<mat-toolbar class="sticky-header mat-background-warn">
+    <a class="home" routerLink="/">
+        <h1>P2evik</h1>
+    </a>
 
     <div class="loginButtons">
-    @if (!authenticationService.isLoggedIn()) {
-        <button
-                data-testid="btn-sign-in"
-                routerLink="/login"
-        >
-            Sign In
-        </button>
-    } @else {
-        <div class="flex items-center">
-            <p class="profile" data-testid="p-username">
-                Welcome {{ authenticationService.userName }}
-            </p>
-            <button
-                    (click)="authenticationService.logout()"
-                    data-testid="btn-sign-out">
-                Sign Out
+        <ng-container *ngIf="!authenticationService.isLoggedIn(); else loggedIn">
+            <button mat-flat-button data-testid="btn-sign-in" routerLink="/login" color="accent">
+                Sign In
             </button>
-        </div>
-    }
+        </ng-container>
 
-    <button
-            data-testid="btn-sign-fetch"
-            (click)="fetchUsers()"
-    >fetch</button>
-</div>
+        <ng-template #loggedIn>
+            <div class="security">
+                <span>Welcome {{ authenticationService.userName }}</span>
+                <button mat-flat-button (click)="authenticationService.logout()" data-testid="btn-sign-out" color="warn">
+                    Sign Out
+                </button>
+            </div>
+        </ng-template>
+    </div>
 </mat-toolbar>
