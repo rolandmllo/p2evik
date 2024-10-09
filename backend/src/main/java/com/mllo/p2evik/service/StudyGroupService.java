@@ -1,6 +1,8 @@
 package com.mllo.p2evik.service;
 
 import com.mllo.p2evik.dto.IDto;
+import com.mllo.p2evik.entity.StudyGroup;
+import com.mllo.p2evik.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -23,5 +25,23 @@ public interface StudyGroupService<T extends IDto> {
      * @return StudyGroup entity
      */
     T getById(long id);
+
+    /**
+     * Find StudyGroup entity by id with members
+     *
+     * @param studyGroup the study group entity
+     * @return StudyGroup entity with members
+     */
+    StudyGroup AddStudyGroupWithMembers(StudyGroup studyGroup);
+
+    /**
+     * Find StudyGroup entity by id with members
+     *
+     * @param studyGroupId the id of the study group entity
+     * @return StudyGroup entity with members
+     * @throws ResourceNotFoundException if the study group is not found
+     */
+    StudyGroup findStudyGroupWithMembers(Long studyGroupId) throws ResourceNotFoundException;
+
 
 }

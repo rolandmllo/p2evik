@@ -3,6 +3,7 @@ package com.mllo.p2evik.controller.advice;
 import com.mllo.p2evik.dto.ApiResponseDto;
 import com.mllo.p2evik.dto.IDto;
 import com.mllo.p2evik.dto.ErrorMessagesDto;
+import com.mllo.p2evik.exception.ResourceNotFoundException;
 import com.mllo.p2evik.exception.RoleNotFoundException;
 import com.mllo.p2evik.exception.UserAlreadyExistsException;
 import com.mllo.p2evik.exception.UserNotFoundException;
@@ -18,6 +19,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Log4j2
 @RestControllerAdvice
 public class ControllerExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String resourceNotFoundHandler(ResourceNotFoundException ex) {
+        log.info("Resource not found: {}", ex.getMessage());
+        return ex.getMessage();
+    }
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

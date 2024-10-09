@@ -16,8 +16,9 @@ public class StudyGroupMapper extends AbstractMapper<StudyGroup, StudyGroupDto> 
 
     @Override
     public StudyGroup toEntity(StudyGroupDto dto) {
-        return new StudyGroup()
-                .setId(dto.id())
-                .setGroupName(dto.name());
+        StudyGroup studyGroup =  new StudyGroup();
+        studyGroup.setId(dto.id());
+        studyGroup.setGroupName(dto.name());
+        return studyGroup;
     }
 }

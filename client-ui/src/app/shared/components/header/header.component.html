@@ -11,6 +11,9 @@
         </ng-container>
 
         <ng-template #loggedIn>
+            <div class="links">
+                <a href="/study-groups">Study Groups</a>
+            </div>
             <div class="security">
                 <span>Welcome {{ authenticationService.userName }}</span>
                 <button mat-flat-button (click)="authenticationService.logout()" data-testid="btn-sign-out" color="warn">

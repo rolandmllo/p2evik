@@ -36,7 +36,7 @@ public class StudyGroup {
                     @JoinColumn(name = "user_id")})
     private List<User> owner;
 
-    @OneToMany(mappedBy = "studyGroup")
+    @OneToMany(mappedBy = "studyGroup", cascade = CascadeType.ALL)
     private List<StudyGroupMember> groupMembers;
 
     @OneToMany(mappedBy = "studyGroup")

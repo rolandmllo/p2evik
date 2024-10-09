@@ -24,16 +24,17 @@ import java.util.*;
 @Entity(name = "users")
 public class User {
 
-    @NotNull
-    @Size(min = 7, max = 100)
-    @Column(unique = true, length = 100)
-    String email;
-
     private @Id
     @NotNull
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @NotNull
+    @Size(min = 7, max = 100)
+    @Column(unique = true, length = 100)
+    String email;
+
 
     @Column(name = "keycloak_id" , unique = true)
     String keycloakId;

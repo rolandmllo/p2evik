@@ -18,6 +18,22 @@
   .loginButtons {
     display: flex;
     align-items: center;
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+
+      a {
+        color: $link-color;
+        padding: 0 10px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .security {
