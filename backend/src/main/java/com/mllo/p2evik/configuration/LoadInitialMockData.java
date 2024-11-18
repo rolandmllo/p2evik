@@ -25,11 +25,10 @@ public class LoadInitialMockData {
                                           StudyGroupRepository studyGroupRepository,
                                           StudyGroupMemberRepository studyGroupMemberRepository) {
         return args -> {
-            var teacher1 = new User();
+            User teacher1 = new User("teacher1");
             teacher1.setEmail("user1@example.com");
-            teacher1.setRoles(Set.of(new Role(UserRoleType.TEACHER)));
 
-            var student1 = new User();
+            var student1 = new User("student1");
             student1.setEmail("studen1@mail.com");
             student1.setRoles(Set.of(new Role(UserRoleType.STUDENT)));
             log.info("Preloading {}, {}",

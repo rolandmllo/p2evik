@@ -7,7 +7,7 @@ services:
         ports:
             - "4200:80"
         depends_on:
-            -   backend
+            -  backend
             -  keycloak
 
     backend:
@@ -56,7 +56,7 @@ services:
 
     keycloak:
         container_name: keycloak-openid-provider
-        image: quay.io/keycloak/keycloak:25.0.5
+        image: quay.io/keycloak/keycloak:26.0.5
         command: [ "start-dev"]
         ports:
             - "8083:8083"

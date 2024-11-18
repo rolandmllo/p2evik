@@ -16,11 +16,10 @@ import java.util.*;
 /**
  * User entity class
  */
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Getter
+@Setter
 @Entity(name = "users")
 public class User {
 
@@ -35,7 +34,6 @@ public class User {
     @Column(unique = true, length = 100)
     String email;
 
-
     @Column(name = "keycloak_id" , unique = true)
     String keycloakId;
 
@@ -43,15 +41,13 @@ public class User {
     @Size(min = 5, max = 50)
     private String name;
 
-    @NotNull
-    @Size(min = 1, max = 30)
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "users_roles", joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {
                     @JoinColumn(name = "role_id", referencedColumnName = "role_id")})
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
@@ -75,9 +71,8 @@ public class User {
                     @JoinColumn(name = "study_group_id")})
     private Set<StudyGroup> groupMember;
 
-
     public User(String name) {
         this.name = name;
-        this.roles = Set.of(new Role(UserRoleType.STUDENT));
+        this.roles.add(new Role(UserRoleType.STUDENT));
     }
 }
